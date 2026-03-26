@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: drone-alert-system
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main_production.py
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://your_username:your_password@your_cluster.mongodb.net/drone_alerts_db?retryWrites=true&w=majority
+      - key: DATABASE_NAME
+        value: drone_alerts_db
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: false
+      - key: PORT
+        value: 8000
+      - key: HOST
+        value: 0.0.0.0 
