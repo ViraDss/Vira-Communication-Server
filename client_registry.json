@@ -1,0 +1,308 @@
+{
+  "drone_001": {
+    "client_id": "drone_001",
+    "client_type": "drone",
+    "name": "Surveillance Drone Alpha",
+    "description": "Primary surveillance drone for perimeter monitoring",
+    "capabilities": [
+      "alerts",
+      "imaging",
+      "navigation",
+      "night_vision",
+      "thermal_imaging"
+    ],
+    "location": {
+      "lat": 40.7128,
+      "lng": -74.006,
+      "altitude": 100
+    },
+    "status": "offline",
+    "first_connected": "",
+    "last_connected": "",
+    "total_connections": 0,
+    "is_authorized": true,
+    "metadata": {
+      "model": "DJI Matrice 300",
+      "camera": "Zenmuse H20T",
+      "flight_time": "45 minutes",
+      "max_speed": "82 km/h",
+      "communication_range": "15 km"
+    }
+  },
+  "drone_002": {
+    "client_id": "drone_002",
+    "client_type": "drone",
+    "name": "Search & Rescue Drone Beta",
+    "description": "Specialized drone for search and rescue operations",
+    "capabilities": [
+      "alerts",
+      "imaging",
+      "navigation",
+      "thermal_imaging",
+      "lidar",
+      "emergency_beacon"
+    ],
+    "location": {
+      "lat": 40.7589,
+      "lng": -73.9851,
+      "altitude": 150
+    },
+    "status": "offline",
+    "first_connected": "",
+    "last_connected": "",
+    "total_connections": 0,
+    "is_authorized": true,
+    "metadata": {
+      "model": "Autel EVO Max 4T",
+      "camera": "Thermal + RGB + Starlight",
+      "flight_time": "42 minutes",
+      "max_speed": "72 km/h",
+      "communication_range": "20 km",
+      "special_features": [
+        "Obstacle avoidance",
+        "RTK positioning"
+      ]
+    }
+  },
+  "drone_003": {
+    "client_id": "drone_003",
+    "client_type": "drone",
+    "name": "Patrol Drone Gamma",
+    "description": "Automated patrol drone for security monitoring",
+    "capabilities": [
+      "alerts",
+      "imaging",
+      "navigation",
+      "auto_patrol",
+      "motion_detection"
+    ],
+    "location": {
+      "lat": 40.6892,
+      "lng": -74.0445,
+      "altitude": 80
+    },
+    "status": "offline",
+    "first_connected": "",
+    "last_connected": "",
+    "total_connections": 0,
+    "is_authorized": true,
+    "metadata": {
+      "model": "Skydio 2+",
+      "camera": "4K 60fps",
+      "flight_time": "27 minutes",
+      "max_speed": "58 km/h",
+      "communication_range": "6 km",
+      "special_features": [
+        "Autonomous navigation",
+        "AI tracking"
+      ]
+    }
+  },
+  "app_security_center": {
+    "client_id": "app_security_center",
+    "client_type": "application",
+    "name": "Security Command Center",
+    "description": "Main security monitoring and response application",
+    "capabilities": [
+      "monitoring",
+      "analysis",
+      "response",
+      "alert_classification",
+      "incident_management"
+    ],
+    "location": null,
+    "status": "offline",
+    "first_connected": "",
+    "last_connected": "",
+    "total_connections": 0,
+    "is_authorized": true,
+    "metadata": {
+      "version": "2.1.0",
+      "operator": "Security Team Alpha",
+      "shift_hours": "24/7",
+      "response_protocols": [
+        "immediate",
+        "standard",
+        "low_priority"
+      ],
+      "integration_systems": [
+        "CCTV",
+        "Access Control",
+        "Alarm System"
+      ]
+    }
+  },
+  "app_ai_analyzer": {
+    "client_id": "app_ai_analyzer",
+    "client_type": "application",
+    "name": "AI Image Analysis System",
+    "description": "Automated image analysis and threat detection system",
+    "capabilities": [
+      "monitoring",
+      "analysis",
+      "object_detection",
+      "threat_assessment",
+      "auto_response"
+    ],
+    "location": null,
+    "status": "offline",
+    "first_connected": "",
+    "last_connected": "",
+    "total_connections": 0,
+    "is_authorized": true,
+    "metadata": {
+      "version": "3.2.1",
+      "ai_model": "YOLOv8 + Custom Security Model",
+      "detection_categories": [
+        "person",
+        "vehicle",
+        "weapon",
+        "fire",
+        "smoke",
+        "intrusion"
+      ],
+      "confidence_threshold": 0.7,
+      "processing_capacity": "100 images/second"
+    }
+  },
+  "app_mobile_dashboard": {
+    "client_id": "app_mobile_dashboard",
+    "client_type": "application",
+    "name": "Mobile Security Dashboard",
+    "description": "Mobile application for security personnel",
+    "capabilities": [
+      "monitoring",
+      "response",
+      "notification_handling",
+      "field_coordination"
+    ],
+    "location": null,
+    "status": "offline",
+    "first_connected": "",
+    "last_connected": "",
+    "total_connections": 0,
+    "is_authorized": true,
+    "metadata": {
+      "version": "1.8.3",
+      "platform": "iOS/Android",
+      "features": [
+        "Push notifications",
+        "GPS tracking",
+        "Voice commands",
+        "Offline mode"
+      ],
+      "user_roles": [
+        "security_guard",
+        "supervisor",
+        "manager"
+      ]
+    }
+  },
+  "drone_emergency_001": {
+    "client_id": "drone_emergency_001",
+    "client_type": "drone",
+    "name": "Emergency Response Drone",
+    "description": "Quick deployment drone for emergency situations",
+    "capabilities": [
+      "alerts",
+      "imaging",
+      "navigation",
+      "emergency_supplies",
+      "medical_support"
+    ],
+    "location": {
+      "lat": 40.7505,
+      "lng": -73.9934,
+      "altitude": 0
+    },
+    "status": "offline",
+    "first_connected": "",
+    "last_connected": "",
+    "total_connections": 0,
+    "is_authorized": true,
+    "metadata": {
+      "model": "Custom Emergency Drone",
+      "camera": "360° Camera System",
+      "flight_time": "35 minutes",
+      "max_speed": "90 km/h",
+      "payload_capacity": "2 kg",
+      "special_equipment": [
+        "First aid supplies",
+        "Emergency beacon",
+        "Loudspeaker"
+      ]
+    }
+  },
+  "app_data_logger": {
+    "client_id": "app_data_logger",
+    "client_type": "application",
+    "name": "Data Logging & Analytics",
+    "description": "System for logging and analyzing all drone activities",
+    "capabilities": [
+      "monitoring",
+      "analysis",
+      "data_logging",
+      "reporting",
+      "trend_analysis"
+    ],
+    "location": null,
+    "status": "offline",
+    "first_connected": "",
+    "last_connected": "",
+    "total_connections": 0,
+    "is_authorized": true,
+    "metadata": {
+      "version": "2.5.2",
+      "database": "PostgreSQL + InfluxDB",
+      "retention_period": "2 years",
+      "report_types": [
+        "daily",
+        "weekly",
+        "monthly",
+        "incident_reports"
+      ],
+      "export_formats": [
+        "CSV",
+        "JSON",
+        "PDF",
+        "Excel"
+      ]
+    }
+  },
+  "test_drone_001": {
+    "client_id": "test_drone_001",
+    "client_type": "drone",
+    "name": "Test Drone 001",
+    "description": "Test drone for development",
+    "capabilities": [
+      "alerts",
+      "imaging",
+      "navigation"
+    ],
+    "location": null,
+    "status": "online",
+    "first_connected": "2025-09-03T10:29:12.269499",
+    "last_connected": "2025-09-03T10:29:12.269499",
+    "total_connections": 1,
+    "is_authorized": true,
+    "metadata": {}
+  },
+  "test_app_001": {
+    "client_id": "test_app_001",
+    "client_type": "application",
+    "name": "Test Application 001",
+    "description": "Test application for development",
+    "capabilities": [
+      "monitoring",
+      "analysis",
+      "response"
+    ],
+    "location": null,
+    "status": "online",
+    "first_connected": "2025-09-03T10:29:24.739208",
+    "last_connected": "2025-09-03T10:29:24.739208",
+    "total_connections": 1,
+    "is_authorized": true,
+    "metadata": {}
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "drone_id": "drone_001",
+    "name": "Test Drone",
+    "location": {
+        "lat": 40.7128,
+        "lng": -74.0060
+    },
+    "status": "active"
+} 
