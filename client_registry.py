@@ -108,7 +108,7 @@ class ClientRegistry:
             logger.info(f"Updated existing {client_type} client: {client_id}")
         else:
             # Create new client
-            client_info = quit(
+            client_info = ClientInfo(
                 client_id=client_id,
                 client_type=client_type,
                 first_connected=current_time,
