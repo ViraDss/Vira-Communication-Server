@@ -30,3 +30,13 @@ class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-here")
     ALGORITHM = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES = 30 
+
+    #Fireabase Credentials
+    FIREBASE_API = os.getenv("FIREBASE_API", "AIzaSyDJ1jNTRR7DsC4EeMlVYdp9GNdG-iZEfnk")
+    FIREBASE_AUTH_DOMAIN = os.getenv("FIREBASE_AUTH_DOMAIN","vira-dd365.firebaseapp.com")
+    FIREBASE_DATABASE_URL = os.getenv("FIREBASE_DATABASE_URL","https://vira-dd365-default-rtdb.firebaseio.com")
+    FIREBASE_PROJECT_ID = os.getenv("FIREBASE_PROJECT_ID","vira-dd365")
+    FIREBASE_STORAGE_BUCKET = os.getenv("FIREBASE_STORAGE_BUCKET","vira-dd365.appspot.com")
+    FIREBASE_MESSAGING_SENDER_ID = os.getenv("FIREBASE_MESSAGING_SENDER_ID","1084416444892")
+    FIREBASE_APP_ID = os.getenv("FIREBASE_APP_ID","1:1084416444892:web:9c8b0e7a3c5f1e4d9b8c9")
+    

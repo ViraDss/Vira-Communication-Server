@@ -286,7 +286,12 @@ def get_registry_stats() -> Dict[str, Any]:
     """Get statistics from the global registry"""
     return client_registry.get_stats()
 
+def is_client_registered(client_id: str) -> bool:
+    """Check if a client exists in the registry"""
+    return client_registry.get_client(client_id) is not None
+
+
 def is_client_authorized(client_id: str) -> bool:
     """Check if a client is authorized"""
     client_info = client_registry.get_client(client_id)
-    return client_info.is_authorized if client_info else True  # Allow new clients by default
+    return bool(client_info and client_info.is_authorized)

@@ -15,6 +15,26 @@ from database import db_manager
 from websocket_manager import websocket_manager
 from models import AlertCreate, AlertResponse, AlertImageUpdate, AlertImageCreate, ProcessingTaskCreate
 from client_registry import client_registry, get_registry_stats
+import pyrebase
+from firebase_auth import init_firebase_auth
+
+
+# Initialize Firebase
+firebase_config = {
+    "apiKey": Config.FIREBASE_API,
+    "authDomain": Config.FIREBASE_AUTH_DOMAIN,
+    "databaseURL": Config.FIREBASE_DATABASE_URL,
+    "projectId": Config.FIREBASE_PROJECT_ID,
+    "storageBucket": Config.FIREBASE_STORAGE_BUCKET,
+    "messagingSenderId": Config.FIREBASE_MESSAGING_SENDER_ID,
+    "appId": Config.FIREBASE_APP_ID
+}
+
+firebase = pyrebase.initialize_app(firebase_config)
+db = firebase.database()
+
+# Wire up the Firebase auth module so it can verify client IDs
+init_firebase_auth(db)
 
 # Configure logging
 logging.basicConfig(

@@ -9,6 +9,7 @@ import uuid
 from models import WebSocketMessage, ConnectionInfo, DroneCommand
 from database import db_manager
 from client_registry import client_registry, is_client_authorized
+from firebase_auth import verify_client_id
 
 def serialize_datetime(obj):
     """Recursively serialize datetime, ObjectId, and other MongoDB objects in dictionaries"""
@@ -51,10 +52,32 @@ class WebSocketManager:
         if not client_id:
             client_id = str(uuid.uuid4())
         
-        # Check if client is authorized (if it exists in registry)
+        # ── Firebase Realtime DB verification ─────────────────────────────────
+        # Map WebSocket client_type to the expected Firebase registry bucket.
+        # "drone"       → clients/drone_clients
+        # "application" → clients/app_clients
+        is_valid, reason = verify_client_id(client_id, expected_type=client_type)
+        if not is_valid:
+            await websocket.close(
+                code=1008,
+                reason=f"Client ID '{client_id}' not registered in Firebase ({reason})"
+            )
+            logger.warning(
+                f"Firebase auth rejected connection: client_id='{client_id}' "
+                f"type='{client_type}' reason='{reason}'"
+            )
+            return None
+
+        logger.info(
+            f"Firebase auth passed for client_id='{client_id}' "
+            f"type='{client_type}' bucket='{reason}'"
+        )
+        # ─────────────────────────────────────────────────────────────────────
+
+        # Secondary check: local registry authorization flag
         if not is_client_authorized(client_id):
-            await websocket.close(code=1008, reason="Client not authorized")
-            logger.warning(f"Unauthorized connection attempt: {client_id}")
+            await websocket.close(code=1008, reason="Client not authorized in local registry")
+            logger.warning(f"Local registry denied connection: {client_id}")
             return None
         
         # Register client in registry (auto-registration)
