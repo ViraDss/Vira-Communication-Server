@@ -8,7 +8,7 @@ from datetime import datetime
 import uuid
 from models import WebSocketMessage, ConnectionInfo, DroneCommand
 from database import db_manager
-from client_registry import client_registry, is_client_authorized
+
 from firebase_auth import verify_client_id
 
 def serialize_datetime(obj):
@@ -74,16 +74,6 @@ class WebSocketManager:
         )
         # ─────────────────────────────────────────────────────────────────────
 
-        # Secondary check: local registry authorization flag
-        if not is_client_authorized(client_id):
-            await websocket.close(code=1008, reason="Client not authorized in local registry")
-            logger.warning(f"Local registry denied connection: {client_id}")
-            return None
-        
-        # Register client in registry (auto-registration)
-        client_info = client_registry.register_client(client_id, client_type)
-        logger.info(f"Client registered/updated in registry: {client_id} ({client_info.name})")
-        
         # Store connection based on client type
         if client_type == "drone":
             self.drone_connections[client_id] = websocket
@@ -100,16 +90,14 @@ class WebSocketManager:
             connected_at=datetime.utcnow()
         )
         
-        logger.info(f"New {client_type} connection: {client_id}")
+        logger.info(f"New {client_type} connection: {client_id} (firebase_bucket={reason})")
         
-        # Send welcome message with client info
+        # Send welcome message
         welcome_message = {
             "type": "connection_established",
             "client_id": client_id,
             "client_type": client_type,
-            "client_name": client_info.name,
-            "capabilities": client_info.capabilities,       #; ! Not Important
-            "total_connections": client_info.total_connections,
+            "firebase_bucket": reason,
             "timestamp": datetime.utcnow().isoformat()
         }
         await self.send_personal_message(client_id, welcome_message)
@@ -119,8 +107,6 @@ class WebSocketManager:
     async def disconnect(self, client_id: str):
         """Handle WebSocket disconnection"""
         try:
-            # Update client registry status
-            client_registry.unregister_client(client_id)
             
             # Remove from appropriate connection pool
             if client_id in self.drone_connections:
