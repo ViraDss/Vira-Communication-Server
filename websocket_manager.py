@@ -433,8 +433,32 @@ class WebSocketManager:
         except Exception as e:
             logger.error(f"Error sending validated alert from drone {drone_id} to applications: {e}")
             logger.error(f"Validated data: {validated_data}")
-    
 
+    async def send_drone_task_to_drone(self, app_id: str, task_data: Dict[str, Any]):
+        """Forward a drone_task from an application to the specified drone"""
+        try:
+            drone_id = task_data.get('drone_id')
+            if not drone_id:
+                logger.warning(f"No drone_id provided in drone_task from application {app_id}")
+                return
+
+            if drone_id not in self.drone_connections:
+                logger.warning(f"Drone {drone_id} not connected for drone_task from application {app_id}")
+                return
+
+            # Forward the message as-is to the target drone
+            message = {
+                "type": "drone_task",
+                "data": serialize_datetime(task_data.copy()),
+                "timestamp": datetime.utcnow().isoformat()
+            }
+            await self.send_personal_message(drone_id, message)
+            logger.info(f"Drone task from application {app_id} sent to drone {drone_id}")
+
+        except Exception as e:
+            logger.error(f"Error sending drone task from application {app_id} to drone: {e}")
+            logger.error(f"Task data: {task_data}")
+    
     async def handle_websocket_message(self, client_id: str, message_data: Dict[str, Any]):
         """Handle incoming WebSocket message"""
         try:
@@ -481,6 +505,12 @@ class WebSocketManager:
                     await self.send_validated_alert_to_applications(client_id, message_data.get('data', {}))
                 else:
                     logger.warning(f"Applications cannot send validated_alert messages")
+
+            elif message_type == 'drone_task':
+                if client_type == 'application':
+                    await self.send_drone_task_to_drone(client_id, message_data.get('data', {}))
+                else:
+                    logger.warning(f"Drones cannot send drone_task messages")
             
             elif message_type == 'ping':
                 # Respond to ping
