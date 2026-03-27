@@ -443,7 +443,7 @@ class WebSocketManager:
             client_type = connection_info.client_type if connection_info else None
             
             if not client_type:
-                logger.error(f"No client type found for {client_id}")
+                logger.error(f"No client type found for {client_id}, {client_type}")
                 return
             
             logger.info(f"Handling message from {client_id} (type: {client_type}): {message_type}")
